@@ -1,0 +1,162 @@
+:root {
+  --tacdis-height: 61px;
+}
+
+@font-face {
+  font-family: "Volvo Novum Regular";
+  src: url("../fonts/volvo-novum-regular.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: "Volvo Novum Bold";
+  src: url("../fonts/volvo-novum-bold.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: "Volvo Novum Italic";
+  src: url("../fonts/volvo-novum-italic.ttf") format('truetype');
+}
+
+html {
+  font-family: "Volvo Novum Regular", Helvetica, Arial, sans-serif;
+  color: var(--primary-text);
+}
+
+body {
+  text-rendering: optimizeSpeed;
+}
+
+a {
+  text-decoraton: none;
+  color: var(--primary-text);
+}
+
+.content {
+  grid-template-rows: 61px 1fr;
+  grid-template-columns: auto 1fr auto;
+  height: 100vh;
+}
+
+.content.collapsed {
+  grid-template-columns: 61px 1fr auto;
+}
+
+.header {
+  grid-column: 2 / 4;
+  background-color: var(--tactis-header);;
+  height: 61px;
+  padding: 1rem;
+}
+
+.navigation {
+  width: 268px;
+  grid-row: 1 / 3;
+  background-color: var(--background);
+  border-left: 
+  justify-content: center;
+}
+
+.navigation.collapsed {
+  width: 61px;
+}
+
+.navigation-header {
+  height: var(--tacdis-height);
+  background-color: var(--tactis-header);;
+}
+
+.navigation-middle {
+  flex-grow: 1;
+  padding: 1rem;
+}
+
+.navigation-footer {
+  flex-grow: 0;
+}
+
+.nav-item {
+  align-items: center;
+}
+
+.nav-icon {
+  width: 24px;
+  height: 24px;
+  margin: 12px;
+}
+
+.calendar-main {
+  background-color: teal;
+  padding: 1rem;
+}
+
+.appointment-edit {
+  background-color: var(--capacity-mango);
+  padding: 1rem;
+  width: 400px;
+}
+
+.numbers {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+button {
+  display: inline-block;
+  border-radius: 4px;
+  font-size: 1rem;
+  padding: .375rem .75rem;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: pointer;
+  line-height: 1.3;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15),
+                    0 1px 1px rgba(0, 0, 0, 0.075);
+  transition: color .15s ease-in-out,
+              background-color .15s ease-in-out,
+              border-color .15s ease-in-out,
+              box-shadow .15s ease-in-out;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
+}
+
+button:active {
+  opacity: .4;
+}
+
+button.primary {
+  background-color: var(--primary-action);
+  color: white;
+}
+
+button.primary:hover {
+  background-color: var(--primary-action-dark);
+}
+
+button.approve {
+  background-color: var(--approve-action);
+  color: white;
+}
+
+button.approve:hover {
+  background-color: var(--approve-action-dark);
+}
+
+button.delete {
+  background-color: var(--delete-action);
+  color: white;
+}
+
+button.delete:hover {
+  background-color: var(--delete-action-dark);
+}
+
+button.secondary {
+  background-color: white;
+}
+
+button.secondary:hover {
+  background-color: var(--inactive-state);
+}
+
+

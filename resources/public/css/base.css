@@ -1,0 +1,86 @@
+:root {
+  --tactis-header: #333;
+  --black-a10;
+
+  --primary-text: #040C21;
+  --active-state: #393E46;
+  --inactive-state: #CBCCCE;
+  --inactive-state-dark: #756B8A;
+  --outline: #E1E7F1;
+  --background: #F3F6FA;
+  --primary-action: #0096FF;
+  --primary-action-dark: #0770BE;
+  --delete-action: #FD7575;
+  --delete-action-dark: #DE3B3B;
+  --approve-action: #00AE69;
+  --approve-action-dark: #007344;
+
+  --resouce-red: #FF0000;
+  --resouce-safety-orange: #FF6B00;
+  --resouce-mango: #FEBF28;
+  --resouce-malachite: #00D45F;
+  --resouce-spanish-green: #009442;
+  --resouce-vivd-sky-blue: #00D1FF;
+  --resouce-xiketic: #040C21;
+  --resouce-persian-rose: #FF00A8;
+  --resouce-electric-indigo: #7000FF;
+  --resouce-electric-purple: #CC00FF;
+  --resouce-blue: #2400FF;
+  --resouce-blue-crayola: #0075FF;
+
+  --appointment-vivid-skye-blue: #4FC0E8;
+  --appointment-maize-crayola: #FFCE55;
+  --appointment-caribbian-green: #48CFAE;
+  --appointment-fiery-rose: #ED5564;
+  --appointment-light-gray: #CCD0D9;
+  --appointment-celadon-blue: #1583AA;
+  --appointment-dark-golden-rod: #C18917;
+  --appointment-generic-viridian: #0B8768;
+  --appointment-ruby-red: #A11A28;
+  --appointment-cadet-blue-crayola: #AAB2BD;
+  --appointment-onyx: #393E46;
+  --appointment-oxford-blue: #041246;
+  --appointment-bistre: #2C1D00;
+  --appointment-dark-green: #003326;
+  --appointment-black-bean: #4C0008;
+  --appointment-charcoal: #444953;
+
+  --capacity-blue-jeans: #51B7FF;
+  --capacity-turquoise: #01DCC4;
+  --capacity-mango: #FEBF28;
+  --capacity-light-coral: #FD7575;
+  --capacity-cultured: #F3F6FA;
+  --capacity-light-gray: #CACFD7;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-fixed {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+.grid {
+  display: grid;
+}
+
+.hidden {
+  display: none;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
