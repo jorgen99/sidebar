@@ -32,7 +32,7 @@
       (nav-item icons/building "Dealer Setup" #(prn "Dealer Setup"))
       (nav-item icons/calendar-week "Slot Appointments" #(prn "Slot Appointments"))]
      [:div.navigation-footer.flex-fixed.nav-divider
-      [:div.nav-item.flex-row
+      [:div.nav-item.footer-items
        {:title "Settings"
         :on-click #(prn "Settings")}
        [:span.nav-icon.flex-fixed

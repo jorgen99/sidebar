@@ -12,7 +12,7 @@
       [:main.content.grid
        [:div.header.flex-row
         "Header"]
-       [:aside.navigation.flex-column
+       [:aside.navigation.flex-column.collapsed
         [nav/render]]
        [:div.calendar-main
         [calendar-main/render]]

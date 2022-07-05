@@ -1,5 +1,6 @@
 :root {
   --tacdis-height: 61px;
+  --collapsed-width: 48px;
 }
 
 @font-face {
@@ -38,13 +39,13 @@ a {
 }
 
 .content.collapsed {
-  grid-template-columns: 61px 1fr auto;
+  grid-template-columns: var(--collapsed-width) 1fr auto;
 }
 
 .header {
   grid-column: 2 / 4;
   background-color: var(--tactis-header);;
-  height: 61px;
+  height: var(--tacdis-height);
   padding: 1rem;
   color: white;
   align-items: center;
@@ -60,7 +61,7 @@ a {
 }
 
 .navigation.collapsed {
-  width: 61px;
+  width: var(--collapsed-width);
 }
 
 .navigation-header {
@@ -75,34 +76,83 @@ a {
 }
 
 .navigation-middle {
-  padding: 1rem;
-  overflow: scroll;
-}
-
-.navigation-middle:nth-child(n) {
-  padding-bottom: 0;
-}
-
-.navigation-middle:nth-child(2n+1) {
-  padding-top: 0;
+  overflow-y: scroll;
 }
 
 .navigation-footer {
   flex-grow: 0;
-  padding: 0 1rem;
+}
+
+.navigation-footer .nav-icon:last-of-type{
+  margin-right: 0;
 }
 
 .nav-item {
+  padding: 1rem;
   align-items: center;
   cursor: pointer;
   text-select: none;
   -webkit-user-select: none;
+  color: var(--inactive-state-dark);
+  position: relative;
+}
+
+.footer-items {
+  display: flex;
+  padding: 1rem;
+  align-items: center;
+  cursor: pointer;
+  text-select: none;
+  -webkit-user-select: none;
+  color: var(--inactive-state-dark);
+  position: relative;
+}
+
+.navigation.collapsed .footer-items {
+  flex-direction: column;
+}
+
+.navigation.collapsed .footer-items .nav-icon {
+  margin: 0px;
+}
+
+.navigation.collapsed .footer-items .nav-icon:first-of-type {
+  padding: 0 0 1rem 0;
+}
+
+.navigation.collapsed .footer-items .nav-icon:last-of-type {
+  transform: rotate(180deg);
+  padding: 0 0 2rem 0;
+}
+
+.nav-item.selected {
+  color: var(--primary-action-dark);
+}
+
+.nav-item.selected::before {
+  content: "";
+  width: 5px;
+  height: 75%;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  background-color: var(--primary-action-dark);
+  transform: translateY(-50%);
+}
+
+.navigation.collapsed .nav-text {
+  display: none;
 }
 
 .nav-icon {
   width: 24px;
   height: 24px;
-  margin: 12px 12px 12px 0;
+  margin-right: 12px;
+}
+
+.navigation.collapsed .nav-icon {
+  width: 16px;
+  height: 16px;
 }
 
 .calendar-main {
