@@ -23,10 +23,10 @@
              :placeholder "Search"}]]])
 
 
-(defn- favorite [short-name full-name color]
+(defn- active-resource [short-name full-name color]
   (let [c (str "var(--" color ")")
         _ (prn ::color c)]
-    [:div.favorite-resource.flex-row
+    [:div.active-resource.flex-row
      [:div.short-name.center
       {:style {:background-color c}} 
       short-name]
@@ -46,10 +46,10 @@
   [:div.section.active
    [:div.pill
     [:div "Active"]]
-   [:div.favorite-resources.flex-column
-    [favorite "JLU" "Jörgen Lundberg" "resource-spanish-green"]
-    [favorite "OLF" "Olof Olsson" "resource-red"]
-    [favorite "LAN" "This Is A Really Long Ass Name" "resource-blue"]]])
+   [:div.active-resources.flex-column
+    [active-resource "JLU" "Jörgen Lundberg" "resource-spanish-green"]
+    [active-resource "OLF" "Olof Olsson" "resource-red"]
+    [active-resource "LAN" "This Is A Really Long Ass Name" "resource-blue"]]])
 
 (defn- favorites []
   [:div.section
