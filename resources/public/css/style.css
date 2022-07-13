@@ -206,17 +206,17 @@ a {
 }
 
 .left-panel .section.search {
-  background-color: inherit;
+  background-color: white;
+  border-radius: 100px;
+  padding: .3rem .7rem; 
 }
 
 .left-panel .section.search .search-field {
   background-color: white;
-  border-radius: 16px;
-  padding: 6px 0;
 }
 
 .search-field .search-icon {
-  margin-left: 10px;
+  margin-left: .2rem;
   margin-right: .5rem;
 }
 
