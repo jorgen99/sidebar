@@ -1,6 +1,7 @@
 :root {
   --tactis-header: #333;
   --black-a10;
+  --border-gray: #757B8A;
 
   --primary-text: #040C21;
   --active-state: #393E46;
@@ -15,18 +16,18 @@
   --approve-action: #00AE69;
   --approve-action-dark: #007344;
 
-  --resouce-red: #FF0000;
-  --resouce-safety-orange: #FF6B00;
-  --resouce-mango: #FEBF28;
-  --resouce-malachite: #00D45F;
-  --resouce-spanish-green: #009442;
-  --resouce-vivd-sky-blue: #00D1FF;
-  --resouce-xiketic: #040C21;
-  --resouce-persian-rose: #FF00A8;
-  --resouce-electric-indigo: #7000FF;
-  --resouce-electric-purple: #CC00FF;
-  --resouce-blue: #2400FF;
-  --resouce-blue-crayola: #0075FF;
+  --resource-red: #FF0000;
+  --resource-safety-orange: #FF6B00;
+  --resource-mango: #FEBF28;
+  --resource-malachite: #00D45F;
+  --resource-spanish-green: #009442;
+  --resource-vivd-sky-blue: #00D1FF;
+  --resource-xiketic: #040C21;
+  --resource-persian-rose: #FF00A8;
+  --resource-electric-indigo: #7000FF;
+  --resource-electric-purple: #CC00FF;
+  --resource-blue: #2400FF;
+  --resource-blue-crayola: #0075FF;
 
   --appointment-vivid-skye-blue: #4FC0E8;
   --appointment-maize-crayola: #FFCE55;
@@ -51,11 +52,83 @@
   --capacity-light-coral: #FD7575;
   --capacity-cultured: #F3F6FA;
   --capacity-light-gray: #CACFD7;
+
+  --volvo-novum-regular: "Volvo Novum Regular", Helvetica, Arial, sans-serif;
+  --volvo-novum-medium: "Volvo Novum Medium", Helvetica, Arial, sans-serif;
+  --volvo-novum-bold: "Volvo Novum Bold", Helvetica, Arial, sans-serif;
+  --volvo-novum-italic: "Volvo Novum Italic", Helvetica, Arial, sans-serif;
+
+}
+
+button {
+  display: inline-block;
+  border-radius: 4px;
+  font-size: 1rem;
+  padding: .375rem .75rem;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: pointer;
+  line-height: 1.3;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15),
+                    0 1px 1px rgba(0, 0, 0, 0.075);
+  transition: color .15s ease-in-out,
+              background-color .15s ease-in-out,
+              border-color .15s ease-in-out,
+              box-shadow .15s ease-in-out;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
+}
+
+button:active {
+  opacity: .4;
+}
+
+button.primary {
+  background-color: var(--primary-action);
+  color: white;
+}
+
+button.primary:hover {
+  background-color: var(--primary-action-dark);
+}
+
+button.approve {
+  background-color: var(--approve-action);
+  color: white;
+}
+
+button.approve:hover {
+  background-color: var(--approve-action-dark);
+}
+
+button.delete {
+  background-color: var(--delete-action);
+  color: white;
+}
+
+button.delete:hover {
+  background-color: var(--delete-action-dark);
+}
+
+button.secondary {
+  background-color: white;
+}
+
+button.secondary:hover {
+  background-color: var(--inactive-state);
+}
+
+.center {
+  display: grid;
+  place-items: center;
 }
 
 .flex-row {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .flex-column {
@@ -82,5 +155,25 @@
 
 .invisible {
   visibility: hidden;
+}
+
+.icon16 {
+  height: 16px;
+  width: 16px;
+}
+
+.icon24 {
+  height: 24px;
+  width: 24px;
+}
+
+.pill {
+  display: inline-block;
+  border-radius: 100px;
+  font-size: .75rem;
+  padding: .25rem .7rem .3rem;
+  line-height: 1.3;
+  background-color: var(--primary-text);
+  color: var(--background);
 }
 

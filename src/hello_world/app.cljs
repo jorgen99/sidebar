@@ -2,6 +2,7 @@
   (:require
     [hello-world.nav :as nav]
     [hello-world.calendar-main :as calendar-main]
+    [hello-world.left-panel :as left-panel]
     [re-frame.core :as rf]))
 
 
@@ -10,14 +11,11 @@
 (defn page []
     (fn []
       [:main.content.grid
-       [:div.header.flex-row
+       [:div.tacdis-header.flex-row
         "Header"]
-       [:aside.navigation.flex-column.collapsed
+       [:aside.navigation.flex-column
         [nav/render]]
        [:div.calendar-main
         [calendar-main/render]]
-       [:aside.appointment-edit
-        "Edit appointment"]]))
-
-
+       [left-panel/render]]))
   

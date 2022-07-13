@@ -42,13 +42,12 @@ a {
   grid-template-columns: var(--collapsed-width) 1fr auto;
 }
 
-.header {
+.tacdis-header {
   grid-column: 2 / 4;
   background-color: var(--tactis-header);;
   height: var(--tacdis-height);
   padding: 1rem;
   color: white;
-  align-items: center;
 }
 
 .navigation {
@@ -89,7 +88,6 @@ a {
 
 .nav-item {
   padding: 1rem;
-  align-items: center;
   cursor: pointer;
   text-select: none;
   -webkit-user-select: none;
@@ -100,7 +98,6 @@ a {
 .footer-items {
   display: flex;
   padding: 1rem;
-  align-items: center;
   cursor: pointer;
   text-select: none;
   -webkit-user-select: none;
@@ -170,64 +167,104 @@ a {
   font-family: Helvetica, Arial, sans-serif;
 }
 
-button {
-  display: inline-block;
-  border-radius: 4px;
-  font-size: 1rem;
-  padding: .375rem .75rem;
-  user-select: none;
-  -webkit-user-select: none;
-  cursor: pointer;
-  line-height: 1.3;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15),
-                    0 1px 1px rgba(0, 0, 0, 0.075);
-  transition: color .15s ease-in-out,
-              background-color .15s ease-in-out,
-              border-color .15s ease-in-out,
-              box-shadow .15s ease-in-out;
-}
-
-button:not(:disabled) {
-  cursor: pointer;
-}
-
-button:active {
-  opacity: .4;
-}
-
-button.primary {
-  background-color: var(--primary-action);
-  color: white;
-}
-
-button.primary:hover {
-  background-color: var(--primary-action-dark);
-}
-
-button.approve {
-  background-color: var(--approve-action);
-  color: white;
-}
-
-button.approve:hover {
-  background-color: var(--approve-action-dark);
-}
-
-button.delete {
-  background-color: var(--delete-action);
-  color: white;
-}
-
-button.delete:hover {
-  background-color: var(--delete-action-dark);
-}
-
-button.secondary {
-  background-color: white;
-}
-
-button.secondary:hover {
+.left-panel {
   background-color: var(--inactive-state);
+  gap: 1rem;
+  padding-top: 1rem;
 }
 
+.left-panel .section {
+  width: 276px;
+  background-color: var(--capacity-mango);
+  margin: 0 1rem;
+  border-radius: 11px;
+  padding: .7rem; .5rem;
+}
 
+.left-panel .section.header {
+  border-radius: 0;
+  background-color: inherit; 
+  font-family: var(--volvo-novum-regular);
+  font-size: 1rem;
+  padding: 0;
+}
+
+.pin {
+  transform: rotate(90deg);
+}
+
+.pin.pinned {
+  transform: rotate(25deg);
+}
+
+.left-panel .header .pin {
+  margin-right: .5rem;
+}
+
+.left-panel .header .plus-minus {
+  color: var(--primary-action);
+}
+
+.left-panel .section.search {
+  background-color: inherit;
+}
+
+.left-panel .section.search .search-field {
+  background-color: white;
+  border-radius: 16px;
+  padding: 6px 0;
+}
+
+.search-field .search-icon {
+  margin-left: 10px;
+  margin-right: .5rem;
+}
+
+.left-panel .section.active {
+  background-color: var(--background);
+}
+
+.section.active .pill {
+  margin-bottom: .7rem;
+}
+
+.favorite-resources {
+  gap: 5px;
+}
+
+.short-name {
+  font-family: var(--volvo-novum-medium);
+  font-size: 10px;
+  color: #FFFFFF;
+  width: 26px;
+  padding: 4px 0 3px 0;
+  margin-right: 6px;
+  flex: 0 0 26px;
+}
+
+.full-name {
+  margin-right: 6px;
+}
+
+.icon-border-round {
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  width: 19px;
+  height: 19px;
+  border-radius: 100%;
+  border: thin solid var(--border-gray);
+  margin-right: 3px;
+  flex: 0 0 19px;
+}
+
+.icon-border-round:last-child {
+  margin-right: 0;
+}
+
+.inner-icon {
+  flex: 0 1 12px;
+  width: 12px;
+  height: 12px;
+  color: var(--border-gray);
+}
