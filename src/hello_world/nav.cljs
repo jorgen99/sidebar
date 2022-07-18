@@ -14,7 +14,7 @@
   
   
 
-(defn render []
+(defn render [toggle-fn]
   ;; Before the function called only once
   (fn []
     ;; called every re-render
@@ -40,8 +40,6 @@
        [:span.nav-text.flex-grow
         "Settings"]
        [:span.nav-icon.flex-fixed
-        {:on-click (fn [e]
-                     (.stopPropagation e)
-                     (prn "Fold"))}
+        {:on-click toggle-fn}
         icons/double-chevron-left]]]]))
 
