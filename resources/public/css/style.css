@@ -248,35 +248,11 @@ a {
   margin-right: 6px;
 }
 
-.icon-border-round {
-  display: flex;
-  flex-direction: column;
-  place-items: center;
-  width: 19px;
-  height: 19px;
-  border-radius: 100%;
-  border: thin solid var(--border-gray);
-  margin-right: 3px;
-  flex: 0 0 19px;
-}
-
-.icon-border-round:last-child {
-  margin-right: 0;
-}
-
-.inner-icon {
-  flex: 0 1 12px;
-  width: 12px;
-  height: 12px;
-  color: var(--border-gray);
-}
-
 .section .list {
   margin: .7rem 0;
   display: flex;
   flex-direction: column;
   gap: 5px;
-  justify-items: center;
 }
 
 
@@ -288,10 +264,6 @@ a {
   font-size: 12px;
   color: var(--primary-action);
   cursor: pointer;
-}
-
-.favorite.flex-row {
-  justify-items: center;
 }
 
 .favorite .border {
