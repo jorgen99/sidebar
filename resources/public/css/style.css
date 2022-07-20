@@ -294,15 +294,20 @@ a {
   justify-items: center;
 }
 
-.favorite > div {
-  border: thin solid var(--outline);
+.favorite .border {
   padding: .5rem;
+  border: thin solid var(--outline);
+}
+
+.favorites .members {
+  margin-left: .4rem;
+  margin-right: .4rem;
+  gap: 5px;
 }
 
 .favorite .resources {
   width: 60px;
   gap: 0 5px;
-  /* justify-content: center; */
 }
 
 .favorite-name div:last-of-type {
@@ -321,3 +326,39 @@ a {
   margin-right: .4rem;
 }
 
+.folded, .folded * {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  animation: fade-out 250ms forwards;
+}
+
+.unfolded * {
+  max-height: 1000px;
+  opacity: 1;
+  animation: fade-in 400ms forwards;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    max-height: 0;
+  }
+  100% {
+    opacity: 1;
+    max-height: 1000px;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+    max-height: 1000px;
+  }
+  100% {
+    opacity: 0;
+    max-height: 0;
+  }
+}
+
+    

@@ -28,16 +28,12 @@
 
 
 (defn- set-left-menu-collapsed [expanded]
-  (prn "sätter expanded till " expanded)
   (rf/dispatch [::set-left-menu-collapsed expanded]))
 
 
 (defn page []
-  (prn ::page "Page called again!")
   (let [left-menu-collapsed (rf/subscribe [:left-menu-collapsed])
-        _ (prn ::collapsed left-menu-collapsed)
         toggle-collapsed (fn [event]
-                           (js/console.log "Clicked " @left-menu-collapsed)
                            (.stopPropagation event)
                            (set-left-menu-collapsed (not @left-menu-collapsed)))]
     [:main.content.grid

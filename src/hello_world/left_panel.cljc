@@ -1,6 +1,52 @@
 (ns hello-world.left-panel
   (:require
-    [hello-world.icons :as icons]))
+    [hello-world.icons :as icons]
+    [hello-world.db :as db]
+    [re-frame.core :as rf]))
+
+
+(def init-db
+  {:favorites [{:name "Team Blue"
+                :folded true
+                :members [{:rtid 424 :short-name "JLU" :full-name "Jörgen Lundberg" :color "resource-spanish-green"}
+                          {:rtid 512 :short-name "OLF" :full-name "Olof Olsson" :color "resource-red"}
+                          {:rtid 62 :short-name "LAN" :full-name "This Is A Really Long Ass Name" :color "resource-blue"}]}
+               {:name "Team Red"
+                :folded false
+                :members [{:rtid 612 :short-name "APA" :full-name "Apa Apansson" :color "resource-safety-orange"}
+                          {:rtid 712 :short-name "BEP" :full-name "Bepa Cepagren" :color "resource-mango"}
+                          {:rtid 62 :short-name "LAN" :full-name "This Is A Really Long Ass Name" :color "resource-blue"}
+                          {:rtid 424 :short-name "JLU" :full-name "Jörgen Lundberg" :color "resource-spanish-green"}
+                          {:rtid 812 :short-name "KAK" :full-name "Kalle Kula" :color "resource-malachite"}
+                          {:rtid 912 :short-name "LEL" :full-name "Leffe Lusis" :color "resource-electric-purple"}
+                          {:rtid 512 :short-name "OLF" :full-name "Olof Olsson" :color "resource-red"}]}]
+   :active [{:rtid 425 :short-name "JLU" :full-name "Jörgen Lundberg" :color "resource-spanish-green"}
+            {:rtid 512 :short-name "OLF" :full-name "Olof Olsson" :color "resource-red"}
+            {:rtid 62 :short-name "LAN" :full-name "This Is A Really Long Ass Name" :color "resource-blue"}]})
+            
+
+(def db-prefix ::state)
+
+
+(db/reg-init-db! db-prefix init-db)
+
+(rf/reg-sub ::favorites
+            (fn [db _]
+              (get-in db [db-prefix :favorites])))
+
+
+(rf/reg-sub ::active
+            (fn [db _]
+              (get-in db [db-prefix :active])))
+
+
+(rf/reg-event-db ::fold-favorite
+                 (fn [db [_ favorite-idx fold]]
+                   (assoc-in db [db-prefix :favorites favorite-idx :folded] fold)))
+
+
+(defn- fold-favorite [favorite-idx fold]
+  (rf/dispatch [::fold-favorite favorite-idx fold]))
 
 
 (defn- heading []
@@ -20,56 +66,70 @@
     [:span.search-icon.icon16
      icons/search]
     [:input {:type "text"
-             :placeholder "Search"}]]]
+             :placeholder "Search"}]]])
 
-  (let [color-var (str "var(--" color ")")]
-    [:div.active-resource.flex-row
+
+(defn- render-resource [resource minus-fn org-fn]
+  (let [{:keys [rtid short-name full-name color]} resource
+        color-var (str "var(--" color ")")]
+    [:div.resorce.flex-row
+     {:key rtid}
      [:div.short-name.center
       {:style {:background-color color-var}}
       short-name]
      [:div.full-name.flex-grow.clipped
       full-name]
-     [:div.icon-border-round
-      [:div.inner-icon
-       icons/dash]]
-     [:div.icon-border-round
-      [:div.inner-icon
-       {:style {:margin"-1px 0 0 0px"}}
-       icons/hierarchy]]]))
+     (when minus-fn
+       [:div.icon16
+        {:style {:color "var(--border-gray)"
+                 :margin-right ".2rem"}
+         :on-click (minus-fn rtid)}
+        icons/dash-circle])
+     (when org-fn
+       [:div.icon16
+        {:style {:color "var(--border-gray)"}
+         :on-click (org-fn rtid)}
+        icons/hierarchy])]))
 
 
 
-(defn- active []
+(defn- active-section [active-resources]
   [:div.section.active
    [:div.pill
     [:div "Active"]]
    [:div.active-resources.flex-column
-    [active-resource "JLU" "Jörgen Lundberg" "resource-spanish-green"]
-    [active-resource "OLF" "Olof Olsson" "resource-red"]
-    [active-resource "LAN" "This Is A Really Long Ass Name" "resource-blue"]]])
+    (map render-resource active-resources)]])
 
 
-(defn- favorite [favorite-name no-of-resources]
-  [:div.favorite.flex-row
-   [:div.resources.flex-row
-    [:div.resource-icon.icon16 icons/group]
-    [:div.number no-of-resources]]
-   [:div.favorite-name.flex-row.flex-grow
-    [:div.name favorite-name]
-    [:div.resource-icon.icon16 icons/chevron-right]]])
+(defn- render-favorite [idx {:keys [name folded members]}]
+  (let [favorite-name name
+        no-of-resources (count members)
+        fold #(fold-favorite idx (not folded))]
+    [:<>
+     {:key name}
+     [:div.favorite.flex-row
+      [:div.border.resources.flex-row
+       [:div.resource-icon.icon16 icons/group]
+       [:div.number no-of-resources]]
+      [:div.border.favorite-name.flex-row.flex-grow.pointer
+       {:on-click fold}
+       [:div.name favorite-name]
+       [:div.resource-icon.icon16 (if folded
+                                    icons/chevron-right
+                                    icons/chevron-down)]]]
+     [:div.flex-column
+      {:class (str "members" (if folded " folded" " unfolded"))}
+      (map render-resource members)]]))
 
-
-(defn- favorites []
+(defn- favorites-section [favorites]
   [:div.section.favorites
    [:div.favorites-heading.flex-row
     [:div.favorites-icon.icon16 icons/star]
     [:div.heading.flex-grow "Favorites"]
     [:a "Edit Favorites"]]
    [:div.favorites-body
-    [:div.empty.hidden]
     [:div.list
-     [favorite "Example One" 3]
-     [favorite "Example Two" 25]]]
+     (map-indexed render-favorite favorites)]]
    [:div.add
     [:button.secondary.flex-row
      [:div.icon16 icons/star]
@@ -82,10 +142,12 @@
 
 
 (defn render []
-  [:aside.left-panel.flex-column
-   [heading]
-   [search]
-   [active]
-   [favorites]
-   [resource-tree]]) 
+  (let [favorites @(rf/subscribe [::favorites])
+        active-resources @(rf/subscribe [::active])]
+    [:aside.left-panel.flex-column
+     [heading]
+     [search]
+     [active-section active-resources]
+     [favorites-section favorites]
+     [resource-tree]])) 
 

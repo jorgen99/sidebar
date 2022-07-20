@@ -11,7 +11,6 @@
 
 
 (defn init-db []
-  (prn ::here "I'm beeing called")
   (merge (empty-db) @db-inits))
 
 
@@ -50,7 +49,6 @@
 
 
 (defn set-left-menu-collapsed! [db collapsed]
-  (prn "Sätter " ::left-menu-collapsed " till "  collapsed)
   (assoc db ::left-menu-collapsed collapsed))
 
 
